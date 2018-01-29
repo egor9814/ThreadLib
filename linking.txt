@@ -1,0 +1,20 @@
+macro(find_threads type)
+	find_library(ThreadLib
+			NAMES threads
+			PATHS /home/egor9814/CLionProjects/ThreadLib/cmake-build-${type})
+	if(ThreadLib)
+		include_directories(/home/egor9814/CLionProjects/ThreadLib/include)
+		message("ThreadLib founded!")
+	endif(ThreadLib)
+	#message(${ThreadLib})
+endmacro(find_threads)
+
+macro(use_threads module)
+	#[[if(NOT ThreadLib)
+		set(ThreadLib )
+	endif(NOT ThreadLib)]]
+	if(ThreadLib)
+		target_link_libraries(${module} ${ThreadLib})
+		message("ThreadLib linked to ${module}")
+	endif(ThreadLib)
+endmacro(use_threads)
